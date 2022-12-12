@@ -8,7 +8,10 @@ function Navbar() {
     <footer className="Navbar">
       <nav className="navbarBov">
         <ul className="navbarListItems">
-          <li className="navbarListItem"></li>
+          <li className="navbarListItem">
+            <ExploreIcon fill="#2c2c2c" width="36px" height="36px" />
+            <p>Explore</p>
+          </li>
         </ul>
       </nav>
     </footer>
