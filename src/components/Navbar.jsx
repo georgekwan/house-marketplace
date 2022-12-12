@@ -4,7 +4,15 @@ import { ReactComponent as ExploreIcon } from '../assets/svg/exploreIcon.svg';
 import { ReactComponent as PersonOutlineIcon } from '../assets/svg/personOutlineIcon.svg';
 
 function Navbar() {
-  return <div>Navbar</div>;
+  return (
+    <footer className="Navbar">
+      <nav className="navbarBov">
+        <ul className="navbarListItems">
+          <li className="navbarListItem"></li>
+        </ul>
+      </nav>
+    </footer>
+  );
 }
 
 export default Navbar;
