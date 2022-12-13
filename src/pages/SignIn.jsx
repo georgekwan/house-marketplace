@@ -33,7 +33,14 @@ function SignIn() {
             />
 
             <div className="passwordInputDiv">
-              <input type={showPassword ? 'text' : 'password'} />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="passwordInput"
+                placeholder="Password"
+                id="password"
+                value={password}
+                onChange={onChange}
+              />
             </div>
           </form>
         </main>
