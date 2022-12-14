@@ -10,8 +10,12 @@ function Profile() {
     email: auth.currentUser.email,
   });
 
+  // Destructure formData
+  const { name, email } = formData;
+
   const navigate = useNavigate();
 
+  // back to home after user has sign out
   const onLogout = () => {
     auth.signOut();
     navigate('/');
