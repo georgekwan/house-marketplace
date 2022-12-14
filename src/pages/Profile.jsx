@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
 
-// Check if user is login
 function Profile() {
-  const [user, setUser] = useState(null);
   const auth = getAuth();
-  useEffect(() => {
-    setUser(auth.currentUser);
-  }, []);
+  // It uses the pre-filled the user's name and email then store it in formData
+  const [formData, setFormData] = useState({
+    name: auth.currentUser.displayName,
+    email: auth.currentUser.email,
+  });
 
-  return user ? <h1>{user.displayName}</h1> : 'Not Logged In';
+  return <></>;
 }
 
 export default Profile;
