@@ -58,7 +58,6 @@ function SignUp() {
       // Update user to user information
       await setDoc(doc(db, 'users', user.uid), formDataCopy);
       navigate('/');
-      navigate('/');
     } catch (error) {
       console.log(error);
     }
