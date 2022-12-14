@@ -14,7 +14,13 @@ function SignIn() {
   const { email, password } = formData;
   const navigate = useNavigate();
 
-  const onChange = () => {};
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      // value change whether it is email or password
+      [e.target.id]: e.target.value,
+    }));
+  };
   return (
     <>
       <div className="pageContainer">
