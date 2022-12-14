@@ -33,7 +33,7 @@ function SignUp() {
   };
 
   const onSubmit = async e => {
-    email.preventDefault();
+    e.preventDefault();
 
     try {
       // Get auth value from getAuth function
