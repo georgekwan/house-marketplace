@@ -28,6 +28,8 @@ function SignIn() {
     e.preventDefault();
 
     try {
+      const auth = getAuth();
+
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -40,8 +42,6 @@ function SignIn() {
     } catch (error) {
       toast.error('Bad User Credentials');
     }
-
-    const auth = getAuth();
   };
   return (
     <>
