@@ -14,8 +14,8 @@ function SignIn() {
   const { email, password } = formData;
   const navigate = useNavigate();
 
-  const onChange = (e) => {
-    setFormData((prevState) => ({
+  const onChange = e => {
+    setFormData(prevState => ({
       ...prevState,
       // value change whether it is email or password
       [e.target.id]: e.target.value,
@@ -37,7 +37,6 @@ function SignIn() {
             value={email}
             onChange={onChange}
           />
-
           <div className="passwordInputDiv">
             <input
               type={showPassword ? 'text' : 'password'}
@@ -52,14 +51,13 @@ function SignIn() {
               src={visibilityIcon}
               alt="show password"
               className="showPassword"
-              onClick={() => setShowPassword((prevState) => !prevState)}
+              onClick={() => setShowPassword(prevState => !prevState)}
             />
           </div>
-
-          <Link to="/forgotPassword" className="forgotPasswordLink">
+          <Link to="/forgot-password" className="forgotPasswordLink">
             Forgot Password
           </Link>
-
+          >
           <div className="signInBar">
             <p className="signInText">Sign In</p>
             <button className="signInButton">
