@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
   const auth = getAuth();
@@ -9,7 +10,22 @@ function Profile() {
     email: auth.currentUser.email,
   });
 
-  return <></>;
+  const navigate = useNavigate();
+
+  const onLogout = () => {
+    auth.signOut();
+    navigate('/');
+  };
+  return (
+    <div className="profile">
+      <header className="profileHeader">
+        <p className="pageHeader">My Profile</p>
+        <button type="button" className="logOut" onClick={onLogout}>
+          Logout
+        </button>
+      </header>
+    </div>
+  );
 }
 
 export default Profile;
