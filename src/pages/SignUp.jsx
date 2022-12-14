@@ -106,13 +106,13 @@ function SignUp() {
             />
           </div>
 
-          <Link to="/forgotPassword" className="forgotPasswordLink">
+          <Link to="/forgot-password" className="forgotPasswordLink">
             Forgot Password
           </Link>
 
-          <div className="signUpnBar">
+          <div className="signUpBar">
             <p className="signUpText">Sign Up</p>
-            <button className="signInButton">
+            <button className="signUpButton">
               <ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
             </button>
           </div>
