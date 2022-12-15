@@ -25,6 +25,9 @@ function ForgotPassword() {
             value={email}
             onChange={onChange}
           />
+          <Link className="forgotPasswordLink" to="/sign-in">
+            Sign In
+          </Link>
         </form>
       </main>
     </div>
