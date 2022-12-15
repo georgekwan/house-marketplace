@@ -1,12 +1,13 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthStatus } from '../hooks/useAuthStatus';
+import Spinner from './Spinner';
 
 const PrivateRoute = () => {
   // Destructure useAuthStatus into loggedIn and checkingStatus
   const { loggedIn, checkingStatus } = useAuthStatus();
 
   if (checkingStatus) {
-    return <h3>Loading...</h3>;
+    return <Spinner />;
   }
 
   // If user is not logged in it would forward to sign in page
