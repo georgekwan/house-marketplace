@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { getAuth, updateProfile } from 'firebase/auth';
-import { updateDoc } from 'firebase/firestore';
+import { updateDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { useNavigate, Link } from 'react-router-dom';
+import { toast, Toast } from 'react-toastify';
+import { async } from '@firebase/util';
 
 function Profile() {
   // initialize the Auth library
@@ -26,8 +28,22 @@ function Profile() {
     navigate('/');
   };
 
-  const onSubmit = () => {
-    console.log(123);
+  const onSubmit = async () => {
+    try {
+      if (auth.currentUser.displayName !== name) {
+        // Update display name in Firebase
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+        });
+        // Update in Firestore
+        const userRef = doc(db, 'users', auth.currentUser.uid);
+        await updateDoc(userRef, {
+          name,
+        });
+      }
+    } catch (error) {
+      toast.error('Could not update profile details');
+    }
   };
 
   // Updates FormData when there is a change in the profile card
@@ -60,12 +76,12 @@ function Profile() {
               type="text"
               id="name"
               className={!changeDetails ? 'profileName' : 'profileNameActive'}
-              disable={!changeDetails}
+              disabled={!changeDetails}
               value={name}
               onChange={onChange}
             />
             <input
-              type="text"
+              type="email"
               id="email"
               className={
                 !changeDetails ? 'profileEmail ' : 'profileEmailActive'
