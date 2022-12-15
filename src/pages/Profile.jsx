@@ -29,6 +29,11 @@ function Profile() {
   const onSubmit = () => {
     console.log(123);
   };
+
+  // Updates FormData when there is a change in the profile card
+  const onChange = e => {
+    setFormData(prevState => ({ ...prevState, [e.target.id]: e.target.value }));
+  };
   return (
     <div className="profile">
       <header className="profileHeader">
@@ -55,6 +60,19 @@ function Profile() {
               type="text"
               id="name"
               className={!changeDetails ? 'profileName' : 'profileNameActive'}
+              disable={!changeDetails}
+              value={name}
+              onChange={onChange}
+            />
+            <input
+              type="text"
+              id="email"
+              className={
+                !changeDetails ? 'profileEmail ' : 'profileEmailActive'
+              }
+              disable={!changeDetails}
+              value={email}
+              onChange={onChange}
             />
           </form>
         </div>
