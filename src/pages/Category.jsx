@@ -69,7 +69,11 @@ function Category() {
           <main>
             <ul className="categoryListings">
               {listings.map(listing => (
-                <ListingItem />
+                <ListingItem
+                  listing={listing.data}
+                  id={listing.id}
+                  key={listing.id}
+                />
               ))}
             </ul>
           </main>
