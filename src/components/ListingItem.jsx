@@ -10,7 +10,7 @@ function ListingItem({ listing, id }) {
         to={`/category/${listing.type}/${id}`}
         className="categoryListingLink">
         <img
-          src={listing.imgUrls[0]}
+          src={listing.imageUrls[0]}
           alt={listing.name}
           className="categoryListingImg"
         />
@@ -28,6 +28,7 @@ function ListingItem({ listing, id }) {
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             {listing.type === 'rent' && ' / Month'}
           </p>
+          <div className="categoryListingInfoDiv"></div>
         </div>
       </Link>
     </li>
