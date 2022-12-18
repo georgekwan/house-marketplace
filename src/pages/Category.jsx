@@ -15,7 +15,7 @@ import Spinner from '../components/Spinner';
 import { async } from '@firebase/util';
 
 function Category() {
-  const [listing, setListings] = useState(null);
+  const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const params = useParams();
@@ -23,9 +23,10 @@ function Category() {
     const fetchListings = async () => {
       try {
         // Get reference
-        const listingsRef = collection(db, 'Listings');
+        const listingsRef = collection(db, 'listings');
 
-        // Create query
+        // Create a query
+        // Filters the first ten listings by category name in descending order
         const q = query(
           listingsRef,
           where('type', '==', params.categoryName),
@@ -35,12 +36,13 @@ function Category() {
 
         //Execute query
         const querySnap = await getDocs(q);
-
+        // Initialize the array
         const listings = [];
-
+        // Loops through the snapshot and pushes ID and data into listings array.
         querySnap.forEach(doc => {
-          console.log(doc.data());
+          return listings.push({ id: doc.id, data: doc.data() });
         });
+        // Updates the state of the component with listings and set loading to false
         setListings(listings);
         setLoading(false);
       } catch (error) {
@@ -48,9 +50,34 @@ function Category() {
       }
     };
     fetchListings();
-  }, []);
+  }, [params.categoryName]);
 
-  return <div>Category</div>;
+  return (
+    <div className="category">
+      <header>
+        <p className="pageHeader">
+          {params.categoryName === 'rent'
+            ? 'Places for rent'
+            : 'Places for sale'}
+        </p>
+      </header>
+      {loading ? (
+        <Spinner />
+      ) : listings && listings.length > 0 ? (
+        <>
+          <main>
+            <ul className="categoryListings">
+              {listings.map(listing => (
+                <h3 key={listing.id}>{listing.data.name}</h3>
+              ))}
+            </ul>
+          </main>
+        </>
+      ) : (
+        <p>No listings for {params.categoryName}</p>
+      )}
+    </div>
+  );
 }
 
 export default Category;
