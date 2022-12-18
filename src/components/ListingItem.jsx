@@ -26,6 +26,7 @@ function ListingItem({ listing, id }) {
               : listing.regularPrice
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            {listing.type === 'rent' && ' / Month'}
           </p>
         </div>
       </Link>
