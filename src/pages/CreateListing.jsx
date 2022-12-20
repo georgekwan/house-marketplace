@@ -107,6 +107,22 @@ function CreateListing() {
             minLength="10"
             required
           />
+
+          <div className="formRooms flex">
+            <div>
+              <label className="formLabel">Bedrooms</label>
+              <input
+                className="formInputSmall"
+                type="number"
+                id="bedrooms"
+                value={bedrooms}
+                onChange={onMutate}
+                min="1"
+                max="50"
+                required
+              />
+            </div>
+          </div>
         </form>
       </main>
     </div>
