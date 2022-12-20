@@ -63,7 +63,34 @@ function CreateListing() {
     return <Spinner />;
   }
 
-  return <div>Create</div>;
+  const onSubmit = e => {
+    e.preventDefault();
+  };
+
+  const onMutate = e => {};
+
+  return (
+    <div className="profile">
+      <header>
+        <p className="pageHeader">Create a Listing</p>
+      </header>
+      <main>
+        <form onSubmit={onSubmit}>
+          <label className="formLabel">Sell / Rent</label>
+          <div className="formButtons">
+            <button
+              type="button"
+              className={type === 'sale' ? 'formButtonActive' : 'formButton'}
+              id="type"
+              value="sale"
+              onClick={onMutate}>
+              Sell
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
+  );
 }
 
 export default CreateListing;
