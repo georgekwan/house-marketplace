@@ -67,7 +67,30 @@ function CreateListing() {
     e.preventDefault();
   };
 
-  const onMutate = e => {};
+  // Check form input value
+  const onMutate = e => {
+    let boolean = null;
+    if (e.target.value === 'true') {
+      boolean = true;
+    }
+    if (e.target.value === 'false') {
+      boolean = false;
+    }
+
+    // Files
+    if (e.target.files) {
+      setFormData(prevState => ({ ...prevState, images: e.target.files }));
+    }
+
+    // Text/Booleans/Numbers
+    // If value is null then use value from the text field
+    if (!e.target.files) {
+      setFormData(prevState => ({
+        ...prevState,
+        [e.target.id]: boolean ?? e.target.value,
+      }));
+    }
+  };
 
   return (
     <div className="profile">
