@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 
 function CreateListing() {
-  const [geolocationEnabled, setGeolocationEnabled] = useState(false);
+  const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     type: 'rent',
@@ -222,6 +222,28 @@ function CreateListing() {
             </div>
           </div>
         )}
+
+        <label className="formLabel">Offer</label>
+        <div className="formButtons">
+          <button
+            className={offer ? 'formButtonActive' : 'formButton'}
+            type="button"
+            id="offer"
+            value={true}
+            onClick={onMutate}>
+            Yes
+          </button>
+          <button
+            className={
+              !offer && offer !== null ? 'formButtonActive' : 'formButton'
+            }
+            type="button"
+            id="offer"
+            value={false}
+            onClick={onMutate}>
+            No
+          </button>
+        </div>
       </main>
     </div>
   );
