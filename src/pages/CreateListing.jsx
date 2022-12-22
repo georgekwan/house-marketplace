@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
+import { toast } from 'react-toastify';
 
 function CreateListing() {
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
@@ -65,6 +66,22 @@ function CreateListing() {
 
   const onSubmit = e => {
     e.preventDefault();
+
+    setLoading(true);
+
+    // Error check when discount price is lower than regular price
+    if (discountedPrice >= regularPrice) {
+      setLoading(false);
+      toast.error('Discounted price needs to be less than regular price');
+      return;
+
+      // Limit max 6 images per upload
+      if (images.length > 6) {
+        setLoading(false);
+        toast.error('Max 6 images');
+        return;
+      }
+    }
   };
 
   // Check form input value
