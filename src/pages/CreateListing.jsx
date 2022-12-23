@@ -128,10 +128,9 @@ function CreateListing() {
         // Set unique id for each image
         const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
 
-        const storageRef = ref(storage, 'images' + fileName);
+        const storageRef = ref(storage, 'images/' + fileName);
 
         const uploadTask = uploadBytesResumable(storageRef, image);
-
         uploadTask.on(
           'state_changed',
           snapshot => {
