@@ -69,7 +69,7 @@ function CreateListing() {
 
     setLoading(true);
 
-    // Error check when discount price is lower than regular price
+    // If the discount price is lower than the regular price, show an error message and prompt the user to enter a valid discount price
     if (discountedPrice >= regularPrice) {
       setLoading(false);
       toast.error('Discounted price needs to be less than regular price');
@@ -94,11 +94,13 @@ function CreateListing() {
       geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
       geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
 
+      // If 'geolocation' is successful, store the resulting address in the 'location' variable
       location =
         data.status === 'ZERO_RESULTS'
           ? undefined
           : data.results[0]?.formatted_address;
 
+      // If the 'location' variable is undefined, show an error message and prompt the user to try again
       if (location === undefined || location.includes('undefined')) {
         setLoading(false);
         toast.error('Please enter a correct address');
