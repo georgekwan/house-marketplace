@@ -106,6 +106,7 @@ function CreateListing() {
         toast.error('Please enter a correct address');
         return;
       }
+      // Save the latitude and longitude in the 'geolocation' variable and the address in the 'location' variable
     } else {
       geolocation.lat = latitude;
       geolocation.lng = longitude;
