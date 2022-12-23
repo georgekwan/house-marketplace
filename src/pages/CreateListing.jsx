@@ -146,6 +146,8 @@ function CreateListing() {
               case 'running':
                 console.log('Upload is running');
                 break;
+              default:
+                break;
             }
           },
           error => {
@@ -179,6 +181,7 @@ function CreateListing() {
   // Check form input value
   const onMutate = e => {
     let boolean = null;
+
     if (e.target.value === 'true') {
       boolean = true;
     }
