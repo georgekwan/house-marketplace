@@ -8,10 +8,10 @@ import {
 } from 'firebase/storage';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase.config';
-import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-import Spinner from '../components/Spinner';
 import { toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
+import Spinner from '../components/Spinner';
 
 function CreateListing() {
   // eslint-disable-next-line
@@ -117,7 +117,6 @@ function CreateListing() {
     } else {
       geolocation.lat = latitude;
       geolocation.lng = longitude;
-      location = address;
     }
 
     // Store image in firebase
@@ -181,11 +180,10 @@ function CreateListing() {
       timestamp: serverTimestamp(),
     };
 
+    formDataCopy.location = address;
     // Exclude images and address from formDataCopy
     delete formDataCopy.images;
     delete formDataCopy.address;
-    // If there is location, set formDataCopy.location and save it as location variable
-    location && (formDataCopy.location = location);
     // If there is no offer, delete discounted price from formDataCopy
     !formDataCopy.offer && delete formDataCopy.discountedPrice;
     // Save it to database
