@@ -6,6 +6,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase.config';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
@@ -13,19 +14,20 @@ import Spinner from '../components/Spinner';
 import { toast } from 'react-toastify';
 
 function CreateListing() {
+  // eslint-disable-next-line
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     type: 'rent',
     name: '',
-    bedroom: 1,
-    bathroom: 1,
+    bedrooms: 1,
+    bathrooms: 1,
     parking: false,
     furnished: false,
     address: '',
     offer: false,
     regularPrice: 0,
-    discountPrice: 0,
+    discountedPrice: 0,
     images: {},
     latitude: 0,
     longitude: 0,
@@ -175,7 +177,25 @@ function CreateListing() {
       return;
     });
 
+    const formDataCopy = {
+      ...formData,
+      imgUrls,
+      geolocation,
+      timestamp: serverTimestamp(),
+    };
+
+    // Exclude images and address from formDataCopy
+    delete formDataCopy.images;
+    delete formDataCopy.address;
+    // If there is location, set formDataCopy.location and save it as location variable
+    location && (formDataCopy.location = location);
+    // If there is no offer, delete discounted price from formDataCopy
+    !formDataCopy.offer && delete formDataCopy.discountedPrice;
+    // Save it to database
+    const docRef = await addDoc(collection(db, 'listing'), formDataCopy);
     setLoading(false);
+    toast.success('Listing saved');
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   };
 
   // Check form input value
