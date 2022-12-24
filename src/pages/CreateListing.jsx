@@ -57,7 +57,7 @@ function CreateListing() {
     if (isMounted) {
       onAuthStateChanged(auth, user => {
         if (user) {
-          setFormData({ ...formData, useRef: user.uid });
+          setFormData({ ...formData, userRef: user.uid });
         } else {
           // Navigate to sign in page if user is not logged in
           navigate('/sign-in');
