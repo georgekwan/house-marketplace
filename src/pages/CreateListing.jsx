@@ -64,28 +64,23 @@ function CreateListing() {
         }
       });
     }
+
     return () => {
       isMounted.current = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted]);
 
-  if (loading) {
-    return <Spinner />;
-  }
-
   const onSubmit = async e => {
     e.preventDefault();
 
     setLoading(true);
-
     // If the discount price is lower than the regular price, show an error message and prompt the user to enter a valid discount price
     if (discountedPrice >= regularPrice) {
       setLoading(false);
       toast.error('Discounted price needs to be less than regular price');
       return;
     }
-
     // Limit max 6 images per upload
     if (images.length > 6) {
       setLoading(false);
@@ -100,7 +95,9 @@ function CreateListing() {
       const response = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`,
       );
+
       const data = await response.json();
+
       geolocation.lat = data.results[0]?.geometry.location.lat ?? 0;
       geolocation.lng = data.results[0]?.geometry.location.lng ?? 0;
 
@@ -192,7 +189,7 @@ function CreateListing() {
     // If there is no offer, delete discounted price from formDataCopy
     !formDataCopy.offer && delete formDataCopy.discountedPrice;
     // Save it to database
-    const docRef = await addDoc(collection(db, 'listing'), formDataCopy);
+    const docRef = await addDoc(collection(db, 'listings'), formDataCopy);
     setLoading(false);
     toast.success('Listing saved');
     navigate(`/category/${formDataCopy.type}/${docRef.id}`);
@@ -226,6 +223,10 @@ function CreateListing() {
       }));
     }
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="profile">
