@@ -40,7 +40,10 @@ function Offers() {
         const listings = [];
         // Loops through the snapshot and pushes ID and data into listings array.
         querySnap.forEach(doc => {
-          return listings.push({ id: doc.id, data: doc.data() });
+          return listings.push({
+            id: doc.id,
+            data: doc.data(),
+          });
         });
         // Updates the state of the component with listings and set loading to false
         setListings(listings);
@@ -49,6 +52,7 @@ function Offers() {
         toast.error('Could not fetch listings');
       }
     };
+
     fetchListings();
   }, []);
 
@@ -72,6 +76,8 @@ function Offers() {
               ))}
             </ul>
           </main>
+          <br />
+          <br />
         </>
       ) : (
         <p>There are no current offers</p>

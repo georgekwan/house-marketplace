@@ -51,7 +51,7 @@ function Listing() {
 
       <div className="listingDetails">
         <p className="listingName">
-          {listing.name} -{' '}
+          {listing.name} - $
           {listing.offer
             ? listing.discountedPrice
                 .toString()
@@ -83,6 +83,16 @@ function Listing() {
           <li>{listing.parking && 'Parking Spot'}</li>
           <li>{listing.furnished && 'Furnished'}</li>
         </ul>
+        <p className="listingLocationTitle">Location</p>
+        {/* MAP */}
+
+        {auth.currentUser?.uid !== listing.userRef && (
+          <Link
+            to={`/contact/${listing.userRef}?listingName=${listing.name}`}
+            className="primaryButton">
+            Contact Landlord
+          </Link>
+        )}
       </div>
     </main>
   );
