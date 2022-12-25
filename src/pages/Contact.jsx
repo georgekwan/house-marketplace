@@ -28,9 +28,9 @@ function Contact() {
 
   return (
     <div className="pageContainer">
-      <heard>
+      <header>
         <p className="pageHeader">Contact Landlord</p>
-      </heard>
+      </header>
 
       {landlord !== null && (
         <main>
