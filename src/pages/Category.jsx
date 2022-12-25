@@ -37,11 +37,15 @@ function Category() {
 
         //Execute query
         const querySnap = await getDocs(q);
+
         // Initialize the array
         const listings = [];
         // Loops through the snapshot and pushes ID and data into listings array.
         querySnap.forEach(doc => {
-          return listings.push({ id: doc.id, data: doc.data() });
+          return listings.push({
+            id: doc.id,
+            data: doc.data(),
+          });
         });
         // Updates the state of the component with listings and set loading to false
         setListings(listings);
@@ -50,6 +54,7 @@ function Category() {
         toast.error('Could not fetch listings');
       }
     };
+
     fetchListings();
   }, [params.categoryName]);
 
@@ -77,6 +82,9 @@ function Category() {
               ))}
             </ul>
           </main>
+
+          <br />
+          <br />
         </>
       ) : (
         <p>No listings for {params.categoryName}</p>
