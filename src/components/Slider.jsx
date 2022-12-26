@@ -59,7 +59,9 @@ function Slider() {
                   backgroundSize: 'cover',
                   minHeight: '20rem',
                 }}
-                className="swiperSlideDiv"></div>
+                className="swiperSlideDiv">
+                <p className="swiperSlideText">{data.name}</p>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
