@@ -189,7 +189,6 @@ function EditListing() {
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
               resolve(downloadURL);
-              console.log('File available at', downloadURL);
             });
           },
         );
@@ -219,7 +218,8 @@ function EditListing() {
     // If there is no offer, delete discounted price from formDataCopy
     !formDataCopy.offer && delete formDataCopy.discountedPrice;
 
-    const docRef = doc(db, 'listing', params.listingId);
+    // Update listing
+    const docRef = doc(db, 'listings', params.listingId);
     await updateDoc(docRef, formDataCopy);
     setLoading(false);
     toast.success('Listing saved');
