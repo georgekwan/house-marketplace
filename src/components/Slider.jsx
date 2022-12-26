@@ -38,6 +38,12 @@ function Slider() {
   if (loading) {
     return <Spinner />;
   }
+
+  // Prevent empty space if there is no listing
+  if (listings.length === 0) {
+    return <></>;
+  }
+
   return (
     listings && (
       <>
