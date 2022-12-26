@@ -34,7 +34,38 @@ function Slider() {
 
     fetchListings();
   }, []);
-  return <div>Slider</div>;
+
+  if (loading) {
+    return <Spinner />;
+  }
+  return (
+    listings && (
+      <>
+        <p className="exploreHeading">Recommended</p>
+
+        <Swiper
+          slidesPerView={1}
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          pagination={true}
+          navigation
+          scrollbar={{ dragable: true }}>
+          {listings.map(({ data, id }) => (
+            <SwiperSlide
+              key={id}
+              onClick={() => navigate(`/category/${data.type}/${id}`)}>
+              <div
+                style={{
+                  background: `url(${data.imgUrls[0]}) center no-repeat`,
+                  backgroundSize: 'cover',
+                  minHeight: '20rem',
+                }}
+                className="swiperSlideDiv"></div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </>
+    )
+  );
 }
 
 export default Slider;
