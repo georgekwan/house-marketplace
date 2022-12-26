@@ -17,7 +17,6 @@ import { toast } from 'react-toastify';
 import ListingItem from '../components/ListingItem';
 import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg';
 import homeIcon from '../assets/svg/homeIcon.svg';
-import { async } from '@firebase/util';
 
 function Profile() {
   // initialize the Auth library
@@ -62,6 +61,7 @@ function Profile() {
       setListings(listings);
       setLoading(false);
     };
+    fetchUserListings();
   }, [auth.currentUser.uid]);
 
   // back to home after user has sign out
@@ -106,6 +106,8 @@ function Profile() {
       toast.success('Successfully deleted listing');
     }
   };
+
+  const onEdit = listingId => navigate(`/edit-listing/${listingId}`);
 
   return (
     <div className="profile">
@@ -163,6 +165,7 @@ function Profile() {
                   listing={listing.data}
                   id={listing.id}
                   onDelete={() => onDelete(listing.id)}
+                  onEdit={() => onEdit(listing.id)}
                 />
               ))}
             </ul>
