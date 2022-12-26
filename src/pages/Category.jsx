@@ -28,12 +28,12 @@ function Category() {
         const listingsRef = collection(db, 'listings');
 
         // Create a query
-        // Filters the first ten listings by category name in descending order
+        // Filters the first five listings by category name in descending order
         const q = query(
           listingsRef,
           where('type', '==', params.categoryName),
           orderBy('timestamp', 'desc'),
-          limit(10),
+          limit(5),
         );
 
         //Execute query
@@ -70,7 +70,7 @@ function Category() {
       const listingsRef = collection(db, 'listings');
 
       // Create a query
-      // Filters the first ten listings by category name in descending order
+      // Filters ten more listings by category name in descending order
       const q = query(
         listingsRef,
         where('type', '==', params.categoryName),
