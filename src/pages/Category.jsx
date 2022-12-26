@@ -18,6 +18,7 @@ import { async } from '@firebase/util';
 function Category() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [lastFetchedListing, setLastFetchedListing] = useState(null);
 
   const params = useParams();
   useEffect(() => {
@@ -37,6 +38,10 @@ function Category() {
 
         //Execute query
         const querySnap = await getDocs(q);
+
+        // Get last listing
+        const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+        setLastFetchedListing(lastVisible);
 
         // Initialize the array
         const listings = [];
