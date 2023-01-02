@@ -1,6 +1,6 @@
 # Welcome to the House Marketplace project repository on GitHub!
 
-This repository contains a [React](https://reactjs.org/) application that was built using the popular JavaScript library for building user interfaces. The application also makes use of the following libraries and tools:
+This repository contains a [React](https://reactjs.org/) application that was created as part of a learning project. The application was built using the following libraries and tools:
 
 - [Firebase](https://firebase.google.com/): A comprehensive mobile and web application development platform that provides various services including real-time database, authentication, and hosting.
 - [React-Leaflet](https://react-leaflet.js.org/): A React wrapper for the popular Leaflet JavaScript library, which is used to create interactive maps.
