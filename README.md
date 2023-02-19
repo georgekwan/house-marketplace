@@ -1,5 +1,7 @@
 # Welcome to the House Marketplace project repository on GitHub!
 
+It's a web application where people can come and register and list their home or apartment for rent or for sale. They can also add it as a special offer.
+
 This repository contains a [React](https://reactjs.org/) application that was created as part of a learning project. The application was built using the following libraries and tools:
 
 - [Firebase](https://firebase.google.com/): A comprehensive mobile and web application development platform that provides various services including real-time database, authentication, and hosting.
