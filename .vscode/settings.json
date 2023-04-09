@@ -3,5 +3,10 @@
   "workbench.colorTheme": "One Dark Pro Darker",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.preferredDarkColorTheme": "One Dark Pro Darker",
-  "workbench.preferredLightColorTheme": "SynthWave '84"
+  "workbench.preferredLightColorTheme": "SynthWave '84",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#05188F",
+    "titleBar.activeBackground": "#0722C8",
+    "titleBar.activeForeground": "#F8F9FF"
+  }
 }

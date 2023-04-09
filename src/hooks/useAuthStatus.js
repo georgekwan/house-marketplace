@@ -1,26 +1,30 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 export const useAuthStatus = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [checkingStatus, setCheckingStatus] = useState(true);
-  const isMount = useRef(true);
+  const [isMounted, setIsMounted] = useState(true);
 
   // Check if user is logged in and remember it until logged off
   useEffect(() => {
-    if (isMount) {
-      const auth = getAuth();
-      onAuthStateChanged(auth, user => {
-        if (user) {
-          setLoggedIn(true);
-        }
-        setCheckingStatus(false);
-      });
-    }
+    const auth = getAuth();
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        setLoggedIn(true);
+      }
+      setCheckingStatus(false);
+    });
     return () => {
-      isMount.current = false;
+      setIsMounted(false);
     };
-  }, [isMount]);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      setIsMounted(false);
+    };
+  }, []);
 
   return { loggedIn, checkingStatus };
 };
